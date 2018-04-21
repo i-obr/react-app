@@ -37,14 +37,10 @@ class Gif extends Component {
       return <p>{error.message}</p>;
     }
 
-    if (isLoading) {
-      return <p>Loading ...</p>;
-    }
-
     return (
       <ContentInner>
         <SubTitle>Gif</SubTitle>
-        <img src={url} with="600" height="400" alt="Gif" />
+        {!isLoading ? <img src={url} with="600" height="400" alt="Gif" /> : <p>Loading ...</p>}
         <Button onClick={this.getRandomUrl} type="button">
           Refresh
         </Button>
