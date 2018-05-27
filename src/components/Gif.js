@@ -24,9 +24,12 @@ class Gif extends Component {
           throw new Error('Something went wrong ...');
         }
       })
-      .then(data =>
-        this.setState({ url: data.data.images.source.url, isLoading: false })
-      )
+      .then(data => {
+        this.setState({
+          url: data.data.images.preview_gif.url,
+          isLoading: false
+        });
+      })
       .catch(error => this.setState({ error, isLoading: false }));
   };
 
@@ -40,7 +43,11 @@ class Gif extends Component {
     return (
       <ContentInner>
         <SubTitle>Gif</SubTitle>
-        {!isLoading ? <img src={url} with="600" height="400" alt="Gif" /> : <p>Loading ...</p>}
+        {!isLoading ? (
+          <img src={url} with="600" height="400" alt="Gif" />
+        ) : (
+          <p>Loading ...</p>
+        )}
         <Button onClick={this.getRandomUrl} type="button">
           Refresh
         </Button>
